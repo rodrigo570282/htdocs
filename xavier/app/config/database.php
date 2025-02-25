@@ -1,0 +1,1 @@
+unir ao banco de dados para colocar link de imagem do usuario

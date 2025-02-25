@@ -1,0 +1,31 @@
+@import url(reset.css);
+@import url(components/content.css);
+@import url(components/footer.css);
+@import url(components/navbar.css);
+@import url(components/sidebar.css);
+
+:root {
+    --page-background-color: #ececec;
+    --navbar-background-color: #ffffff;
+    --sidebar-background-color: #7bac3b;
+    --sidebar-active-background-color: #5e8c2a;
+
+    --text-white: #ffffff;
+}
+
+body {
+    background-color: var(--page-background-color);
+}
+
+.content {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: 68px 1fr 22px;
+}
+
+@media (max-width: 600px) {
+    .content {
+        grid-template-columns: 1fr;
+        grid-template-rows: 48px 1fr 16px;
+    }
+}

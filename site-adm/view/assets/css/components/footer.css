@@ -1,0 +1,12 @@
+.footer-grid {
+    height: 22px;
+    grid-column: 2;
+    grid-row: 3;
+}
+
+@media (max-width: 600px) {
+    .footer-grid {
+        height: 16px;
+        grid-column: 1;
+    }
+}

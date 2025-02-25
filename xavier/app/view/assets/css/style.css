@@ -1,0 +1,20 @@
+@import url(reset.css);
+@import url(componentes.css);
+@import url(table.css);
+@import url(adm.css);
+@import url(sobre.css);
+
+/* nesse arquivo: estilo pag. home */
+
+/* 
+    reset.css
+    artigo.css
+        css dentro da tag main
+    usuario.css
+        css dentro da tag main
+    categoria.css
+        css dentro da tag main
+
+    componentes.css
+        CSS p/ barra navegação, lateral e rodape
+*/
