@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'LoginIhUmlJ.ui'
+## Form generated from reading UI file 'LoginsVLIQr.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.7.2
 ##
@@ -17,13 +17,12 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QFrame, QLabel, QLineEdit,
     QPushButton, QSizePolicy, QWidget)
-import icon_rc
 
 class Ui_Form(object):
     def setupUi(self, Form):
         if not Form.objectName():
             Form.setObjectName(u"Form")
-        Form.resize(556, 571)
+        Form.resize(625, 571)
         self.frame = QFrame(Form)
         self.frame.setObjectName(u"frame")
         self.frame.setGeometry(QRect(20, 20, 491, 471))
@@ -110,10 +109,11 @@ class Ui_Form(object):
 
     def retranslateUi(self, Form):
         Form.setWindowTitle(QCoreApplication.translate("Form", u"Form", None))
-        self.label.setText(QCoreApplication.translate("Form", u"<html><head/><body><p align=\"center\"><img src=\":/icon/login.png\"/></p></body></html>", None))
+        self.label.setText(QCoreApplication.translate("Form", u"<html><head/><body><p align=\"center\"><br/></p></body></html>", None))
         self.txt_user.setPlaceholderText(QCoreApplication.translate("Form", u"EMAIL", None))
         self.txt_password.setPlaceholderText(QCoreApplication.translate("Form", u"SENHA", None))
         self.pushButton_2.setText(QCoreApplication.translate("Form", u"CADASTRAR", None))
         self.pushButton.setText(QCoreApplication.translate("Form", u"ENTRAR", None))
     # retranslateUi
 
+Ui_Form()

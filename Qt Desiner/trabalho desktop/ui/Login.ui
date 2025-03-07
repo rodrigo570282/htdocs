@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>556</width>
+    <width>625</width>
     <height>571</height>
    </rect>
   </property>
@@ -47,7 +47,7 @@
      </size>
     </property>
     <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;img src=&quot;:/icon/login.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -222,8 +222,6 @@ QPushButton:hover{
   <tabstop>txt_password</tabstop>
   <tabstop>pushButton</tabstop>
  </tabstops>
- <resources>
-  <include location="../../imagens/imagens cards/icon.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>
