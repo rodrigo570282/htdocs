@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Lateral com Barra de Navegação</title>
+    <!-- Link para o arquivo CSS -->
+    <link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=polymer" />
+    <link rel="stylesheet" href="">
+<body>
+    <!-- Barra de Navegação Superior -->
+    <div class="navbar">
+        <span class="navbar-title">Meu Site</span>
+        <div class="navbar-user">
+            <img src="https://via.placeholder.com/40" alt="Avatar" class="avatar">
+            <span>Usuário</span>
+        </div>
+    </div>
+
+    <!-- Menu Lateral -->
+    <div class="sidebar">
+        <!-- Logo -->
+        <span class="material-symbols-outlined">
+            polymer
+            </span>
+        
+        <!-- Botões para mudar de página -->
+        <a href="javascript:void(0);" onclick="showPage('pagina1')">Página 1</a>
+        <a href="javascript:void(0);" onclick="showPage('pagina2')">Página 2</a>
+        <a href="javascript:void(0);" onclick="showPage('pagina3')">Página 3</a>
+    </div>
+
+    <!-- Conteúdo da Página -->
+    <div class="content">
+        <div id="pagina1" class="page-content">
+            <h1>Conteúdo da Página 1</h1>
+            <p>Bem-vindo à Página 1. Aqui está o conteúdo da primeira página.</p>
+        </div>
+
+        <div id="pagina2" class="page-content" style="display: none;">
+            <h1>Conteúdo da Página 2</h1>
+            <p>Bem-vindo à Página 2. Aqui está o conteúdo da segunda página.</p>
+        </div>
+
+        <div id="pagina3" class="page-content" style="display: none;">
+            <h1>Conteúdo da Página 3</h1>
+            <p>Bem-vindo à Página 3. Aqui está o conteúdo da terceira página.</p>
+        </div>
+    </div>
+
+    <!-- Rodapé -->
+    <footer class="footer">
+        <span>Versão 1.0.0</span>
+    </footer>
+
+    <!-- JavaScript para alternar conteúdo -->
+    <script>
+        function showPage(pageId) {
+            // Oculta todos os conteúdos
+            const pages = document.querySelectorAll('.page-content');
+            pages.forEach(page => page.style.display = 'none');
+            
+            // Exibe o conteúdo correspondente à página clicada
+            const activePage = document.getElementById(pageId);
+            if (activePage) {
+                activePage.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>

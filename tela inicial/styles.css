@@ -1,0 +1,95 @@
+/* Resetando margens e padding padrão */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilo para a barra de navegação superior */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    color: white;
+    padding: 15px 30px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.navbar-title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.navbar-user {
+    display: flex;
+    align-items: center;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+/* Estilo para o menu lateral */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    padding-top: 70px; /* Espaço para a barra de navegação */
+}
+
+.sidebar {
+    height: calc(100vh - 70px); /* Subtrai a altura da barra de navegação */
+    width: 250px;
+    background-color: #333;
+    color: white;
+    position: fixed;
+    top: 70px;
+    left: 0;
+    padding-top: 50px;
+    text-align: center;
+}
+
+.sidebar img {
+    width: 80%;
+    margin-bottom: 20px;
+}
+
+.sidebar a {
+    display: block;
+    color: white;
+    padding: 15px;
+    text-decoration: none;
+    font-size: 18px;
+    transition: background-color 0.3s;
+}
+
+.sidebar a:hover {
+    background-color: #575757;
+}
+
+/* Estilo para o conteúdo da página */
+.content {
+    margin-left: 260px;
+    padding: 20px;
+    flex-grow: 1;
+    margin-top: 70px; /* Para que o conteúdo não fique atrás da barra superior */
+}
+
+/* Estilo para o rodapé */
+.footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
