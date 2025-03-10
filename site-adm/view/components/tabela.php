@@ -8,6 +8,7 @@ require_once './../../config/env.php';
 <body class="content">
     <?php require_once __DIR__ . '\..\components\navbar.php'; ?>
     <?php require_once __DIR__ . '\..\components\sidebar.php'; ?>
+    <link rel="stylesheet" href="view/assets/css/components/tabela.css">
 
     <main class="content-grid">
         <h1>Usuários</h1>

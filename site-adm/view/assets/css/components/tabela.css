@@ -1,0 +1,72 @@
+/* Estilos gerais */
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.content {
+    display: flex;
+}
+
+.content-grid {
+    padding: 20px;
+    width: 100%;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+/* Estilos da tabela */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+/* Estilos dos links de ação */
+table a {
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+/* Estilos do botão adicionar usuario*/
+a {
+    text-decoration: none;
+    padding: 5px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    display: inline-block;
+}
+
+/* Estilos da navbar e sidebar */
+nav, aside, footer {
+    padding: 10px;
+}
+
+nav {
+    background-color: #f2f2f2;
+}
+
+aside {
+    background-color: #f9f9f9;
+    width: 200px;
+}
+
+footer {
+    background-color: #f2f2f2;
+    text-align: center;
+}

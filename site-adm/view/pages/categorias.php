@@ -5,6 +5,7 @@
 
     <main class="content-grid">
         <h1>Categoria</h1>
+        
     </main>
 
     <?php require_once __DIR__ . '\..\components\footer.php'; ?>
