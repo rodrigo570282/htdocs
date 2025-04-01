@@ -7,7 +7,6 @@ require_once '../components/head.php';
     <?php require_once '../components/sidebar.php'; ?>
 
     <main class="content-grid">
-<<<<<<< HEAD
      
         <div class="add-user-container">
             <a href="adicionar_usuario.php" class="btn-add-user">Adicionar Usuário</a>
@@ -60,45 +59,6 @@ require_once '../components/head.php';
                 </tr>
             </tbody>
         </table>
-=======
-        <h1>Usuários</h1>
-
-        <?php
-        // Dados de exemplo (você pode substituir por dados do banco de dados)
-        $usuarios = [
-            ['id' => 1, 'nome' => 'João Silva', 'email' => 'joao@email.com'],
-            ['id' => 2, 'nome' => 'Maria Oliveira', 'email' => 'maria@email.com'],
-            ['id' => 3, 'nome' => 'Pedro Santos', 'email' => 'pedro@email.com'],
-        ];
-        ?>
-
-        <a href="#">Adicionar Usuário</a>
-
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nome</th>
-                    <th>Email</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($usuarios as $usuario): ?>
-                    <tr>
-                        <td><?php echo $usuario['id']; ?></td>
-                        <td><?php echo $usuario['nome']; ?></td>
-                        <td><?php echo $usuario['email']; ?></td>
-                        <td>
-                            <a href="#">Editar</a> | <a href="#">Excluir</a>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-
->>>>>>> 79ed4d6ba2883c8106f4abd1b2486c9d7429b1f7
-    </main>
 
     <?php require_once '../components/footer.php'; ?>
 
