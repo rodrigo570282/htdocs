@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `usuario` (
-  `email` varchar(100) DEFAULT NULL,
+  `login` varchar(100) DEFAULT NULL,
   `senha` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -36,7 +36,7 @@ CREATE TABLE `usuario` (
 -- Despejando dados para a tabela `usuario`
 --
 
-INSERT INTO `usuario` (`email`, `senha`) VALUES
+INSERT INTO `usuario` (`login`, `senha`) VALUES
 ('rodrigo', 'rodrigo');
 COMMIT;
 

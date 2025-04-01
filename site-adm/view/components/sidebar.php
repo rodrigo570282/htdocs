@@ -9,7 +9,7 @@
     </div>
 
     <nav class="nav">
-        <img src="<?= VARIAVEIS['DIR_IMG'] ?>logo.jpg" alt="logo">
+        <img src="<?= VARIAVEIS['DIR_IMG'] ?>logo2.jpeg" alt="logo2">
         <ul id="nav-items" class="nav-items">
             <li class="nav-item">
                 <a class="nav-link" href="<?= VARIAVEIS['DIR_PAGES'] ?>home.php">
