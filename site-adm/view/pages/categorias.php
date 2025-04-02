@@ -7,7 +7,6 @@ require_once '../components/head.php';
     <?php require_once '../components/sidebar.php'; ?>
 
     <main class="content-grid">
-<<<<<<< HEAD
     
 
         <a href="adicionar_categoria.php" class="add-category-button">Adicionar Categoria</a>
@@ -40,10 +39,8 @@ require_once '../components/head.php';
                 
             </tbody>
         </table>
-=======
-        <h1>Categoria</h1>
-        
->>>>>>> 79ed4d6ba2883c8106f4abd1b2486c9d7429b1f7
+
+
     </main>
 
     <?php require_once '../components/footer.php'; ?>
