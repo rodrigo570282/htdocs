@@ -1,0 +1,41 @@
+                                                   # código para conectar o banco de dados
+
+import mysql.connector
+
+# Função para conectar ao banco de dados
+def conectar():
+    return mysql.connector.connect(
+        host="localhost",
+        user="root",
+        password="",
+        database="meu_sistema"
+    )
+
+# Função para adicionar um usuário
+def adicionar_usuario(login, senha):
+    conexao = conectar()
+    cursor = conexao.cursor()
+    sql = "INSERT INTO usuarios (email, senha_hash) VALUES (%s, SHA2(%s, 256))"
+    valores = (login, senha)
+    cursor.execute(sql, valores)
+    conexao.commit()
+    cursor.close()
+    conexao.close()
+    print("Usuário cadastrado com sucesso!")
+
+
+def verificar_usuario(login, senha):
+    conexao = conectar()
+    cursor = conexao.cursor()
+    sql = "SELECT * FROM usuarios WHERE email = %s AND senha_hash = SHA2(%s, 256)"
+    valores = (login, senha)
+    cursor.execute(sql, valores)
+    resultado = cursor.fetchone()
+    cursor.close()
+    conexao.close()
+    if resultado:
+        print("Login bem-sucedido!")
+        return True
+    else:
+        print("Login ou senha incorretos.")
+        return False
