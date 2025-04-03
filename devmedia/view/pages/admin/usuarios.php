@@ -45,9 +45,11 @@
                             </a>
                             <form method="POST"
                                 action="<?= APP_CONSTANTS['APP_URL'] . APP_CONSTANTS['PATH_PAGES'] . 'admin/usuario.php?id=' . $item['id'] ?>">
-                                <span class="btn-icon material-symbols-outlined" title="Excluir">
-                                    delete
-                                </span>
+                                <button type="submit" name="excluir">
+                                    <span class="btn-icon material-symbols-outlined" title="Excluir">
+                                        delete
+                                    </span>
+                                </button>
                             </form>
                         </td>
                     </tr>

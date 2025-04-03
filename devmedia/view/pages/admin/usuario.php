@@ -1,23 +1,61 @@
 <?php
-    require_once __DIR__ . '/../../../config/env.php';
-    require_once __DIR__ . '/../../../model/UsuarioModel.php';
+require_once __DIR__ . '/../../../config/env.php';
+require_once __DIR__ . '/../../../model/UsuarioModel.php';
 
-    // modo edição ou criação
-    if (isset($_GET['id'])) {
-        $modo = 'EDICAO';
-        $usuarioModel = new UsuarioModel();
-        $usuario = $usuarioModel->buscarPorId($_GET['id']);
-    } else {
-        $modo = 'CRIACAO';
-        $usuario = [
-            'id'=> '',
-            'email'=> '',
-            'nome'=> '',
-            'cpf'=> '',
-            'dataNascimento'=> '',
-        ];
+$usuarioModel = new UsuarioModel();
+
+// modo edição ou criação
+if (isset($_GET['id'])) {
+    $modo = 'EDICAO';
+    $usuario = $usuarioModel->buscarPorId($_GET['id']);
+} else {
+    $modo = 'CRIACAO';
+    $usuario = [
+        'id' => '',
+        'email' => '',
+        'nome' => '',
+        'cpf' => '',
+        'dataNascimento' => '',
+    ];
+}
+
+// Processamento do formulário de edição/criação
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email'])) { //Verifica se é post e se o email está setado.
+    $dados = [
+        'id' => $_POST['id'],
+        'email' => $_POST['email'],
+        'nome' => $_POST['nome'],
+        'cpf' => $_POST['cpf'],
+        'dataNascimento' => $_POST['dataNascimento'],
+    ];
+
+    if ($modo === 'CRIACAO') {
+        if ($usuarioModel->criar($dados['nome'], $dados['email'], $dados['telefone'], $dados['dataNascimento'], $dados['cpf'])) {
+            header('Location: ' . APP_CONSTANTS['APP_URL'] . APP_CONSTANTS['PATH_PAGES'] . 'admin/usuarios.php');
+            exit;
+        } else {
+            echo "Erro ao criar usuário.";
+        }
+    } elseif ($modo === 'EDICAO') {
+        if ($usuarioModel->editar($dados)) {
+            header('Location: ' . APP_CONSTANTS['APP_URL'] . APP_CONSTANTS['PATH_PAGES'] . 'admin/usuarios.php');
+            exit;
+        } else {
+            echo "Erro ao editar usuário.";
+        }
     }
+}
 
+// Processamento da exclusão
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['excluir'])) { //Verifica se é post e se o excluir está setado.
+    $id = $_GET['id'];
+    if ($usuarioModel->excluir($id)) {
+        header('Location: ' . APP_CONSTANTS['APP_URL'] . APP_CONSTANTS['PATH_PAGES'] . 'admin/usuarios.php');
+        exit;
+    } else {
+        echo "Erro ao excluir usuário.";
+    }
+}
 ?>
 
 <?php require_once __DIR__ . '/../../components/head.php'; ?>
@@ -57,9 +95,7 @@
 
                 <div class="form-actions">
                     <a href="<?= APP_CONSTANTS['APP_URL'] . APP_CONSTANTS['PATH_PAGES'] . 'admin/usuarios.php' ?>">
-                        <button class="btn" type="button">
-                            Cancelar
-                        </button>
+                        <button class="btn" type="button">Cancelar</button>
                     </a>
                     <button class="btn btn-primary">Salvar</button>
                 </div>
