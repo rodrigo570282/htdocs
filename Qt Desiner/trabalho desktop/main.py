@@ -1,93 +1,40 @@
+# -*- coding: utf-8 -*-
+
 import sys
-from PySide6.QtWidgets import QApplication, QMainWindow, QMessageBox
-from py.cadastro import Ui_Cadastro
-from py.login import Ui_Form
-from py.pagina1 import Ui_loginOk
-import bcrypt
-import mysql.connector
-from mysql.connector import Error
+from PySide6.QtWidgets import QApplication, QWidget, QMainWindow
+from py.login import Ui_Form  # Importando o arquivo da tela de login
+from py.cadastro import Ui_Cadastro  # Importando o arquivo da tela de cadastro
 
-def conectar(usuario="root", senha="", db="login"):
-    try:
-        conexao = mysql.connector.connect(
-            host="localhost",
-            user=usuario,
-            password=senha,
-            database=db
-        )
-        return conexao
-    except Error as e:
-        print(f"Erro ao conectar ao banco de dados: {e}")
-        return None
-
-def verificar_usuario(login, senha):
-    conexao = conectar()
-    if conexao:
-        cursor = conexao.cursor()
-        sql = "SELECT senha FROM usuario WHERE login = %s"
-        valores = (login,)
-        cursor.execute(sql, valores)
-        resultado = cursor.fetchone()
-        cursor.close()
-        conexao.close()
-
-        if resultado:
-            senha_hash = resultado[0].encode('utf-8')
-            return bcrypt.checkpw(senha.encode('utf-8'), senha_hash)
-        else:
-            return False
-    else:
-        return False
-
-class MainWindow(QMainWindow):
+class LoginWindow(QWidget):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("Sistema de Login")
-        self.setGeometry(300, 300, 400, 300)
         self.ui = Ui_Form()
         self.ui.setupUi(self)
-        self.ui.pushButton.clicked.connect(self.realizar_login)
-        self.ui.pushButton_2.clicked.connect(self.abrir_tela_cadastro)
 
-    def realizar_login(self):
-        login = self.ui.txt_user.text()
-        senha = self.ui.txt_password.text()
+        # Conecta o botão "CADASTRAR" ao método para abrir a tela de cadastro
+        self.ui.pushButton_2.clicked.connect(self.open_cadastro)
 
-        if verificar_usuario(login, senha):
-            self.mostrar_erro("Login bem-sucedido!", "Você está logado.")
-            self.exibir_login_ok()
-        else:
-            self.mostrar_erro("Erro no login", "E-mail ou senha incorretos.")
-
-    def mostrar_erro(self, titulo, mensagem):
-        msg = QMessageBox()
-        msg.setIcon(QMessageBox.Information)
-        msg.setWindowTitle(titulo)
-        msg.setText(mensagem)
-        msg.exec()
-
-    def exibir_login_ok(self):
-        self.loginOk_window = QMainWindow()
-        self.ui_login_ok = Ui_loginOk()
-        self.ui_login_ok.setupUi(self.loginOk_window)
-        self.loginOk_window.show()
-
-    def abrir_tela_cadastro(self):
-        self.close()
-        self.cadastro_window = QMainWindow()
-        self.ui_cadastro = Ui_Cadastro()
-        self.ui_cadastro.setupUi(self.cadastro_window)
+    def open_cadastro(self):
+        self.cadastro_window = CadastroWindow()
         self.cadastro_window.show()
+        self.close()  # Fecha a tela de login
 
-def main():
-    app = QApplication(sys.argv)
-    window = MainWindow()
-    window.show()
-    sys.exit(app.exec())
+class CadastroWindow(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.ui = Ui_Cadastro()
+        self.ui.setupUi(self)
+
+        # Conecta o botão "VOLTAR" ao método para retornar à tela de login
+        self.ui.pushButton_3.clicked.connect(self.go_back)
+
+    def go_back(self):
+        self.login_window = LoginWindow()
+        self.login_window.show()
+        self.close()  # Fecha a tela de cadastro
 
 if __name__ == "__main__":
-    main()
-
-
-
-
+    app = QApplication(sys.argv)
+    login_window = LoginWindow()
+    login_window.show()
+    sys.exit(app.exec())

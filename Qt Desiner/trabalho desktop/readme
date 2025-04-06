@@ -1,4 +1,4 @@
-                                                   # código para conectar o banco de dados
+ # código para conectar o banco de dados
 
 import mysql.connector
 
