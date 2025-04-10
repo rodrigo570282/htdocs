@@ -1,0 +1,29 @@
+-- 1 - fazer os comandos para inserir, atualizar, excluir e visualizar registros de todas as tabelas;
+-- 2 - criar tabela para representar uma pessoa;
+-- 3 - representar a relação de motorista e carro conduzido.
+
+
+
+-- 1 Selecione todos os registros da tabela marcas;
+-- 2 Liste Todas as placas e anos dos carros cadastrados;
+-- 3 Mostre o nome e a data de nascimento de todas as pessoas;
+-- 5 Encontre todas as pessoas nascidas antes do ano 2000.
+-- 5 Encontre todas as pessoas nascidas antes do ano 2000.
+-- 6 Selecione os carros de uma marca específica (exemplo: "Toyota").
+-- 7 Exiba todas as pessoas cujo nome comece com a letra "A".
+-- 8 Liste todas as placas dos carros e o nome da respectiva marca;
+-- 9 Mostre o nome das pessoas e os carros que elas possuem;
+-- 10 mostre o nome das pessoas que possuem carros de determinada marca (exemplo: "Ford");
+-- 11 conte quantas marcas de carros estão cadastradas;
+-- 12 descubra quantos carros existem no banco de dados;
+-- 13 calcule a idade média das pessoas cadastradas;
+-- 14 encontre o ano do carro mais antigo e do mais novo;
+-- 15 conte quantas pessoas possuem pelo menos um carro;
+-- 16 liste todas as pessoas que possuem carros cadastrados;
+-- 17 encontre as marcas de carros que não possuem nenhum veículo registrado.
+-- 18 Liste os 5 carros mais novos cadastrados;
+-- 19 Liste as pessoas pelo nome em ordem alfabética;
+-- 20 Liste as três marcas com mais carros cadastrados;
+-- 21 Exclua uma marca que possui carros cadastrados. O que acontece? Explique;
+-- 22 Exclua uma pessoa que possui carros associados. O que acontece? Explique;
+-- 23 Atualize o nome de uma marca e verifique se isso afeta os carros associados. Explique.
