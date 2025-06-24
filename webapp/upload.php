@@ -68,6 +68,18 @@ if (isset($_FILES['foto'])) {
         echo "Erro ao enviar o arquivo.";
     }
 }
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["foto"])) {
+    $target_dir = "uploads/";
+    $target_file = $target_dir . basename($_FILES["foto"]["name"]);
+
+    // Verifica se o upload ocorreu corretamente
+    if (move_uploaded_file($_FILES["foto"]["tmp_name"], $target_file)) {
+        header("Location: galeria.php"); // Redireciona para a galeria
+        exit();
+    } else {
+        echo "Erro ao enviar o arquivo.";
+    }
+}
 ?>
 
 <!DOCTYPE html>
