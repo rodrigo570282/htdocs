@@ -1,44 +1,49 @@
 <?php
-// Inicializa variável para mensagens
-$mensagem = "";
 
-// Verifica se o formulário foi enviado
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['foto'])) {
-    $imagem = $_FILES['foto'];
+require_once __DIR__ . '/app/model/GaleriaModel.php';
+require_once __DIR__ . '/app/service/ImagensUploadService.php';
 
-    // Definições de segurança
-    $mimeTypesPermitidas = ['image/jpeg', 'image/png'];
-    $extensoesPermitidas = ['jpg', 'jpeg', 'png'];
-    $tamanhoMaximo = 16 * 1024 * 1024; // 16MB
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_FILES['foto']) && isset($_POST['usuario_id'])) {
+        $imagem = $_FILES['foto'];
+        // to-do validar se existe o usuário
+        $usuarioId = $_POST['usuario_id'];
 
-    // Extração da extensão
-    $extensao = strtolower(pathinfo($imagem['name'], PATHINFO_EXTENSION));
+        $imagemSalva = ImagensUploadService::upload($imagem);
 
-    // Validações
-    if (!in_array($imagem['type'], $mimeTypesPermitidas)) {
-        $mensagem = "Tipo de arquivo inválido.";
-    } elseif (!in_array($extensao, $extensoesPermitidas)) {
-        $mensagem = "Extensão de arquivo inválida.";
-    } elseif ($imagem['size'] > $tamanhoMaximo) {
-        $mensagem = "Arquivo excede o tamanho permitido.";
-    } else {
-        // Diretório de destino
-        $diretorio = 'uploads/';
-        if (!is_dir($diretorio)) {
-            mkdir($diretorio, 0777, true);
-        }
-
-        // Gera nome único
-        $nomeUnico = uniqid() . '.' . $extensao;
-        $caminhoFinal = $diretorio . $nomeUnico;
-
-        // Tenta mover o arquivo
-        if (move_uploaded_file($imagem['tmp_name'], $caminhoFinal)) {
-            header("Location: galeria.php");
-            exit();
-        } else {
-            $mensagem = "Erro ao salvar o arquivo.";
-        }
+        $galeriaModel = new GaleriaModel();
+        $galeriaModel->salvar($imagemSalva['id'], $usuarioId);
     }
 }
+
 ?>
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload</title>
+
+    <style>
+        <?php require_once __DIR__ . '/app/view/assets/style.css'; ?>
+    </style>
+</head>
+
+<body>
+    <section>
+        <div class="flex">
+            <p>
+                <a href="index.php">Voltar</a>
+            </p>
+        </div>
+        <?php if ($imagemSalva): ?>
+            <p>
+                Imagem salva com sucesso em <?= $imagemSalva['caminho'] ?>.
+            </p>
+        <?php endif ?>
+    </section>
+</body>
+
+</html>
