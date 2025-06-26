@@ -95,7 +95,7 @@
 <body>
     <div class="container">
         <h2>Enviar Arquivo</h2>
-        <form action="upload.php" method="POST" enctype="multipart/form-data" onsubmit="redirectToGallery()">
+        <form action="upload.php" method="POST" enctype="multipart/form-data">
             <!-- Input oculto para upload -->
             <input type="file" name="foto" id="foto" accept="image/*" onchange="previewImage()">
             <label for="foto">Escolher Arquivo</label>
