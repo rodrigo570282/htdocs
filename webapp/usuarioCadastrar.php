@@ -1,4 +1,20 @@
 <?php
+// inicia a sessão
+session_start();
+
+// Se está logado
+if (isset($_SESSION['id'])) {
+    // Se a ultima interação extrapolou o limite de tempo
+    $horaAtual = time();
+    $horaLogin = $_SESSION['hora_login'];
+    // 1800 segundos -> 30 minutos
+    $tempoLimiteSessao = 1800;
+    if (($horaAtual - $horaLogin) > $tempoLimiteSessao) {
+        // desloga o usuario
+        return header('Location: logout.php');
+    }
+}
+
 require_once __DIR__ . '/app/model/UsuariosModel.php';
 require_once __DIR__ . '/app/service/ImagensUploadService.php';
 
@@ -13,15 +29,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $imagemSalva = ImagensUploadService::upload($_FILES['imagem_perfil']);
         }
 
-        // salva no banco de dados
-        $usuariosModel->salvar([
-            'nome' => $_POST['nome'],
-            'email' => $_POST['email'],
-            'senha' => $_POST['senha'],
-            'imagem_perfil_id' => $imagemSalva['id'] ?? null
-        ]);
+        // validar se o email já existe
+        $usuarioExiste = $usuariosModel->verificarSeExiste($_POST['email']);
 
-        return header('Location: index.php');
+        if (!$usuarioExiste) {
+            // salva no banco de dados
+            $usuariosModel->salvar([
+                'nome' => $_POST['nome'],
+                'email' => $_POST['email'],
+                'senha' => $_POST['senha'],
+                'imagem_perfil_id' => $imagemSalva['id'] ?? null
+            ]);
+
+            return header('Location: index.php');
+        } else {
+            // definir erro na sessao
+           $_SESSION['erro'] = 'Email já cadastrado no sistema!';
+        }
     }
 }
 
@@ -50,6 +74,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <form action="usuarioCadastrar.php"
             method="POST"
             enctype="multipart/form-data">
+
+            <?php if (isset($_SESSION['erro'])): ?>
+                <div id="area-erros" class="area-erros">
+                    <span>
+                        <?php
+                            echo $_SESSION['erro'];
+                            $_SESSION['erro'] = null;
+                        ?>
+                    </span>
+                </div>
+            <?php endif; ?>
+
             <div>
                 <label for="nome">Nome</label>
                 <input name="nome" type="text">
@@ -72,6 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </form>
     </section>
+    <script src="app/view/assets/main.js"></script>
 </body>
 
 </html>

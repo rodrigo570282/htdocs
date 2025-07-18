@@ -1,4 +1,20 @@
 <?php
+// inicia a sessão
+session_start();
+
+// Se está logado
+if (isset($_SESSION['id'])) {
+    // Se a ultima interação extrapolou o limite de tempo
+    $horaAtual = time();
+    $horaLogin = $_SESSION['hora_login'];
+    // 1800 segundos -> 30 minutos
+    $tempoLimiteSessao = 1800;
+    if (($horaAtual - $horaLogin) > $tempoLimiteSessao) {
+        // desloga o usuario
+        return header('Location: logout.php');
+    }
+}
+
 require_once __DIR__ . '/app/model/UsuariosModel.php';
 require_once __DIR__ . '/app/model/GaleriaModel.php';
 
@@ -21,7 +37,7 @@ $imagens = $galeriaModel->buscarPorUsuarioId($id);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galeria de usuarios <?= $usuario['nome'] ?></title>
+    <title>Galeria de <?= $usuario['nome'] ?></title>
 
     <style>
         <?php require_once __DIR__ . '/app/view/assets/style.css'; ?>

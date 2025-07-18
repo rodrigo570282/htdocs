@@ -58,6 +58,28 @@ class UsuariosModel extends BaseModel
     }
 
     /**
+     * Summary of verificarSeExiste
+     * @return bool
+     */
+    public function verificarSeExiste($email): bool
+    {
+        $query = "
+            select count(*) as quantidade
+            from usuarios u
+            WHERE u.email = :email
+        ";
+
+        $stmt = $this->pdo->prepare($query);
+        $stmt->execute([
+            ':email' => $email
+        ]);
+
+        $result = $stmt->fetch();
+
+        return $result['quantidade'] > 0;
+    }
+
+    /**
      * Summary of validarLogin
      * @param string $email
      * @param string $senha

@@ -1,7 +1,19 @@
 <?php
-
 // inicia a sessão
 session_start();
+
+// Se está logado
+if (isset($_SESSION['id'])) {
+    // Se a ultima interação extrapolou o limite de tempo
+    $horaAtual = time();
+    $horaLogin = $_SESSION['hora_login'];
+    // 1800 segundos -> 30 minutos
+    $tempoLimiteSessao = 1800;
+    if (($horaAtual - $horaLogin) > $tempoLimiteSessao) {
+        // desloga o usuario
+        return header('Location: logout.php');
+    }
+}
 
 require_once __DIR__ . '/app/model/UsuariosModel.php';
 
@@ -17,6 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['nome'] = $usuarioValido['nome'];
             $_SESSION['email'] = $usuarioValido['email'];
             $_SESSION['imagem_perfil_caminho'] = $usuarioValido['imagem_perfil_caminho'];
+            $_SESSION['hora_login'] = time();
 
             return header('Location: index.php');
         }

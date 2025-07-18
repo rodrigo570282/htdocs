@@ -60,6 +60,11 @@ section {
     }
 }
 
+.area-erros {
+    padding: 1rem;
+    color: red;
+}
+
 .flex {
     display: flex;
 }

@@ -13,29 +13,13 @@ class GaleriaModel extends BaseModel
 
     /**
      * Summary of salvar
-     * Aqui alterado para aceitar o nome do usuário e buscar o ID antes do insert.
      * @param string $imagemId
-     * @param string $usuarioNome  <-- mudou o nome do parâmetro para deixar claro
+     * @param string $usuarioId
      *
      * @return bool
      */
-    public function salvar($imagemId, $usuarioNome)
+    public function salvar($imagemId, $usuarioId)
     {
-        // Buscar o id do usuário pelo nome recebido
-        $queryUser = "SELECT id FROM usuarios WHERE nome = :nome LIMIT 1";
-        $stmtUser = $this->pdo->prepare($queryUser);
-        $stmtUser->execute([':nome' => $usuarioNome]);
-        $usuario = $stmtUser->fetch();
-
-        if (!$usuario) {
-            // Se não achar o usuário, pode lançar exceção ou retornar false
-            throw new Exception("Usuário '$usuarioNome' não encontrado.");
-            // ou: return false;
-        }
-
-        // Usa o id encontrado para inserir na galeria
-        $usuarioId = $usuario['id'];
-
         $query = "INSERT INTO $this->tabela (imagem_id, usuario_id)
             VALUES (:imagem_id, :usuario_id)";
 

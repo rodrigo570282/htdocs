@@ -36,18 +36,18 @@
 
     Implemente um sistema de expiração automática da sessão por inatividade.
 
-    - Após 5 minutos sem atividade, a sessão do usuário deve ser encerrada automaticamente.
-    - Exiba uma mensagem informando o motivo do logout ao redirecionar para o login.
-    - Use $_SESSION['ultima_interacao'] com a função time() para controlar o tempo.
+    - *Após 5 minutos sem atividade, a sessão do usuário deve ser encerrada automaticamente.
+    - *Exiba uma mensagem informando o motivo do logout ao redirecionar para o login.
+    - *Use $_SESSION['ultima_interacao'] com a função time() para controlar o tempo.
 
 7. Bloqueio por Tentativas de Login Falhas
 
     Adicione uma funcionalidade que bloqueie o acesso após 3 tentativas de login incorretas.
 
-    - Armazene o número de tentativas usando $_SESSION.
-    - Após 3 tentativas, bloqueie o login por 2 minutos.
-    - Exiba mensagens genéricas para o usuário com intenção de ofuscar informação em caso de ataque de força bruta.
+    - *Armazene o número de tentativas usando $_SESSION.
+    - *Após 3 tentativas, bloqueie o login por 2 minutos.
+    - *Exiba mensagens genéricas para o usuário com intenção de ofuscar informação em caso de ataque de força bruta.
 
 8. Área administrativa
 
-	Adiciona uma área administrativa no sistema onde somente o usuário administrador pode excluir imagens de qualquer usuário.
+	*Adiciona uma área administrativa no sistema onde somente o usuário administrador pode excluir imagens de qualquer usuário.
