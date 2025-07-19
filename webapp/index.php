@@ -1,31 +1,10 @@
 <?php
+// inicia a sessão
+session_start();
 
-function verificarSessaoEDeslogar(int $tempoLimiteSessao = 1800): void
-{
-    // Inicia a sessão se ainda não estiver iniciada
-    if (session_status() == PHP_SESSION_NONE) {
-        session_start();
-    }
+require_once __DIR__. '/app/service/authService.php';
 
-    // Se o usuário está logado (verificamos pela presença do 'id' na sessão)
-    if (isset($_SESSION['id'])) {
-        // Obtenha a hora atual e a hora do login registrada na sessão
-        $horaAtual = time();
-        $horaLogin = $_SESSION['hora_login']; // Assume que 'hora_login' é definido no momento do login
-
-        // Se a última interação extrapolou o limite de tempo permitido para a sessão
-        if (($horaAtual - $horaLogin) > $tempoLimiteSessao) {
-            // Redireciona o usuário para a página de logout para deslogá-lo
-            header('Location: logout.php');
-            exit(); // **Crucial**: Termina a execução do script para garantir o redirecionamento imediato
-        }
-        // Se a sessão está ativa e dentro do tempo limite, o script continua sua execução normalmente
-    } else {
-        // Se o usuário não está logado (não há 'id' na sessão), redireciona para a página de logout
-        header('Location: logout.php');
-        exit(); // **Crucial**: Termina a execução do script
-    }
-}
+authService::sessaoValida();
 
 require_once __DIR__ . '/app/model/GaleriaModel.php';
 
